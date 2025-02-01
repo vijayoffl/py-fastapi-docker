@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build the Docker Image
-        run: docker build --file Dockerfile --tag vijay20397/fastapi:${{ github.sha }}
+        run: docker build --file Dockerfile --tag vijay20397/fastapi:${{ github.sha }} .
 
       - name: Push Docker Image
         run: docker push vijay20397/fastapi:${{ github.sha }}
