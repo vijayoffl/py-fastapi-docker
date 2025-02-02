@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-mysql-connector-python
+sqlalchemy
 python-dotenv
 pydantic
 passlib[bcrypt]
