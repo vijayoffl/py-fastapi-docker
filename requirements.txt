@@ -5,3 +5,4 @@ sqlalchemy
 python-dotenv
 pydantic
 passlib[bcrypt]
+email-validator
