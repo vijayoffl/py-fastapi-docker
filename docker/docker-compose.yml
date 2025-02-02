@@ -6,9 +6,12 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+mysqlconnector://root:password@db:3306/fastapi_auth
+      - DATABASE_URL=mysql+pymysql://root:password@db:3306/fastapi_auth  # Use pymysql
     depends_on:
-      - db
+      db:
+        condition: service_healthy  # Wait for MySQL to be ready
+    networks:
+      - fastapi-network
 
   db:
     image: mysql:5.7
@@ -19,6 +22,16 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - fastapi-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
 volumes:
   mysql_data:
+
+networks:
+  fastapi-network:
