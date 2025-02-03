@@ -1,9 +1,9 @@
 fastapi
 uvicorn
-pymysql
-sqlalchemy
+pymysql  # Use pymysql instead of mysql-connector-python
 python-dotenv
-pydantic
+pydantic[email]
 passlib[bcrypt]
+sqlalchemy
 email-validator
 python-multipart
