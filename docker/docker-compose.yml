@@ -6,10 +6,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://root:password@db:3306/fastapi_auth
+      - DATABASE_URL=mysql+pymysql://root:password@db:3306/fastapi_auth  # Use pymysql
     depends_on:
       db:
-        condition: service_healthy  # Wait for MySQL to be ready
+        condition: service_healthy
     networks:
       - fastapi-network
 
