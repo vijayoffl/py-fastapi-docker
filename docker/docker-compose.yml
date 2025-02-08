@@ -6,32 +6,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://root:password@db:3306/fastapi_auth  # Use pymysql
+      - DATABASE_URL=mysql+pymysql://vijay:14Td2934%40@13.234.75.21:3306/fastapi_auth  # Use pymysql
     depends_on:
       db:
         condition: service_healthy
     networks:
       - fastapi-network
 
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: fastapi_auth
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - fastapi-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
-
-volumes:
-  mysql_data:
-
-networks:
-  fastapi-network:
+ 
