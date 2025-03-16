@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Boolean, Column, Integer, String, Date
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -17,3 +17,4 @@ class UpcomingReleaseDB(Base):
     director = Column(String, nullable=False)
     music = Column(String, nullable=False)
     streaming_date = Column(Date, nullable=False)
+    is_active = Column(Boolean, default=True)

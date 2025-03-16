@@ -36,9 +36,21 @@ def get_release(release_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Release not found")
     return release
 
+# @router.get("/", response_model=List[UpcomingRelease])
+# def get_all_releases(db: Session = Depends(get_db)):
+#     releases = db.query(UpcomingReleaseDB).all()  # Fixed ORM query
+
+#     if not releases:
+#         raise HTTPException(
+#             status_code=status.HTTP_404_NOT_FOUND,
+#             detail="No upcoming releases found"
+#         )
+
+#     return releases
+
 @router.get("/", response_model=List[UpcomingRelease])
 def get_all_releases(db: Session = Depends(get_db)):
-    releases = db.query(UpcomingReleaseDB).all()  # Fixed ORM query
+    releases = db.query(UpcomingReleaseDB).filter(UpcomingReleaseDB.is_active == True).all()
 
     if not releases:
         raise HTTPException(
@@ -47,6 +59,7 @@ def get_all_releases(db: Session = Depends(get_db)):
         )
 
     return releases
+
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_release(release_id: int, db: Session = Depends(get_db)):

@@ -12,6 +12,7 @@ class UpcomingReleaseBase(BaseModel):
     director: str
     music: str
     streaming_date: date
+    is_active: bool
 
 class UpcomingReleaseCreate(UpcomingReleaseBase):
     pass
