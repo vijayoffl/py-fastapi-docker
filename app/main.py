@@ -14,7 +14,8 @@ app = FastAPI()
 
 # Allowed origins (use "*" to allow all)
 origins = [
-    "https://www.otttrackers.com",  # Your frontend URL
+    "https://otttrackers.com",  # Your frontend URL
+    "https://www.otttrackers.com",
     "*",  # Allow all (only for testing, not recommended in production)
 ]
 
