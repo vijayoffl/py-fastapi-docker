@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 from pydantic import BaseModel
 
 class UpcomingReleaseBase(BaseModel):
@@ -7,7 +8,7 @@ class UpcomingReleaseBase(BaseModel):
     genre: str
     ott: str
     cast: str
-    landscape_image_url: str
+    landscape_image_url: Optional[str] = None  # Allows null values
     portrait_image_url: str
     director: str
     music: str

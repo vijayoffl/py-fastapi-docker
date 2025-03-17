@@ -12,7 +12,7 @@ class UpcomingReleaseDB(Base):
     genre = Column(String, nullable=False)
     ott = Column(String, nullable=False)
     cast = Column(String, nullable=False)
-    landscape_image_url = Column(String, nullable=False)
+    landscape_image_url = Column(String, nullable=True)
     portrait_image_url = Column(String, nullable=False)
     director = Column(String, nullable=False)
     music = Column(String, nullable=False)
