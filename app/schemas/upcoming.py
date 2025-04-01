@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from typing import Optional
 from pydantic import BaseModel
 
@@ -14,6 +14,7 @@ class UpcomingReleaseBase(BaseModel):
     music: str
     streaming_date: date
     is_active: bool
+    created_date: datetime
 
 class UpcomingReleaseCreate(UpcomingReleaseBase):
     pass

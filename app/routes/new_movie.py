@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
@@ -24,7 +25,7 @@ def create_release(release: NewMovieReleaseCreate, db: Session = Depends(get_db)
 
     # Create ORM instance
     new_movie = NewMovieReleaseDB(**new_movie_data)
-
+    new_movie.created_date = datetime.utcnow() # Convert to IST
     db.add(new_movie)
     db.commit()
     db.refresh(new_movie)  # Ensure ID is included in the response
@@ -40,7 +41,7 @@ def get_release(release_id: int, db: Session = Depends(get_db)):
 
 @router.get("/", response_model=List[NewMovieRelease])
 def get_all_releases(db: Session = Depends(get_db)):
-    releases = db.query(NewMovieReleaseDB).all()  # Fixed ORM query
+    releases = db.query(NewMovieReleaseDB).order_by(NewMovieReleaseDB.created_date.desc()).all()
 
     if not releases:
         raise HTTPException(
@@ -49,6 +50,7 @@ def get_all_releases(db: Session = Depends(get_db)):
         )
 
     return releases
+
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_release(release_id: int, db: Session = Depends(get_db)):

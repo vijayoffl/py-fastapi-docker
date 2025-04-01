@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from pydantic import BaseModel
 
 class NewMovieReleaseBase(BaseModel):
@@ -13,6 +13,7 @@ class NewMovieReleaseBase(BaseModel):
     music: str
     streaming_date: date
     ott_link: str
+    
 
 class NewMovieReleaseCreate(NewMovieReleaseBase):
     pass

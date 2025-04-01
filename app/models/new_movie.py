@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import Column, DateTime, Integer, String, Date
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -18,3 +18,4 @@ class NewMovieReleaseDB(Base):
     music = Column(String, nullable=False)
     ott_link = Column(String, nullable=False)
     streaming_date = Column(Date, nullable=False)
+    created_date = Column(DateTime, nullable=False)
